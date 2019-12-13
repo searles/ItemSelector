@@ -23,7 +23,9 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): EntryViewHolder {
         val layoutId = when(viewType) {
             itemViewType -> R.layout.item_layout
-            else -> R.layout.folder_layout
+            folderViewType -> R.layout.folder_layout
+            openFolderViewType -> R.layout.folder_layout // TODO do something special
+            else -> error("unexpected view type")
         }
 
         val view = LayoutInflater.from(context).inflate(layoutId, viewGroup, false)
