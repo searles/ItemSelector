@@ -1,2 +1,2 @@
-include ':demoselectorlib', ':app'
+include ':itemselectorlib', ':app'
 rootProject.name='CategorySelector'
