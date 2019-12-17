@@ -23,8 +23,8 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): EntryViewHolder {
         val layoutId = when(viewType) {
             itemViewType -> R.layout.item_layout
-            folderViewType -> R.layout.folder_layout
-            openFolderViewType -> R.layout.folder_layout // TODO do something special
+            closedFolderViewType -> R.layout.closed_folder_layout
+            openFolderViewType -> R.layout.open_folder_layout
             else -> error("unexpected view type")
         }
 
@@ -45,7 +45,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
             if(item.isOpen) {
                 openFolderViewType
             } else {
-                folderViewType
+                closedFolderViewType
             }
         } else {
             itemViewType
@@ -107,7 +107,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
 
     companion object {
         const val itemViewType = 0
-        const val folderViewType = 1
+        const val closedFolderViewType = 1
         const val openFolderViewType = 2
     }
 }
