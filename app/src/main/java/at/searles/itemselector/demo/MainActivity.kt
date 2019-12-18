@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK) {
                 require(data != null)
 
-                val folderName = data.getStringExtra(ItemSelectorActivity.folderNameKey)!!
-                val itemName = data.getStringExtra(ItemSelectorActivity.itemNameKey)!!
+                val folderName = data.getStringExtra(ItemSelectorActivity.folderKey)!!
+                val itemName = data.getStringExtra(ItemSelectorActivity.itemKey)!!
 
                 Log.i("DemoSelector", "folder: $folderName, item: $itemName")
 

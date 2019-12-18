@@ -76,7 +76,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
 
         fun bind(item: Entry) {
             // set ui
-            nameTextView.text = item.name
+            nameTextView.text = item.title
             descriptionTextView.text = item.description
             item.setImageInView(iconImageView)
         }

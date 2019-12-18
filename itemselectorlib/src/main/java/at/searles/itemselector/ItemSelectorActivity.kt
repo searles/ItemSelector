@@ -73,8 +73,8 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
 
     override fun itemClicked(folder: Folder, item: Item) {
         val intent = Intent().apply {
-            putExtra(folderNameKey, folder.name)
-            putExtra(itemNameKey, item.name)
+            putExtra(folderKey, folder.title)
+            putExtra(itemKey, item.title)
         }
 
         setResult(Activity.RESULT_OK, intent)
@@ -83,8 +83,8 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
 
     companion object {
         const val initializerClassNameKey = "initializerClassName"
-        const val folderNameKey = "folderName"
-        const val itemNameKey = "itemName"
+        const val folderKey = "folder"
+        const val itemKey = "item"
     }
 
 }
