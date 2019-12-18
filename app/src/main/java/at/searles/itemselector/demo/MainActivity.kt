@@ -31,10 +31,10 @@ class MainActivity : AppCompatActivity() {
             if(resultCode == Activity.RESULT_OK) {
                 require(data != null)
 
-                val folderName = data.getStringExtra(ItemSelectorActivity.folderKey)!!
-                val itemName = data.getStringExtra(ItemSelectorActivity.itemKey)!!
+                val folderKey = data.getStringExtra(ItemSelectorActivity.folderKey)!!
+                val itemKey = data.getStringExtra(ItemSelectorActivity.itemKey)!!
 
-                Log.i("DemoSelector", "folder: $folderName, item: $itemName")
+                Log.i("DemoSelector", "folder: $folderKey, item: $itemKey")
 
                 return
             }

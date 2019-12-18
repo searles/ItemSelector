@@ -5,8 +5,8 @@ import at.searles.itemselector.model.Folder
 import at.searles.itemselector.model.Item
 
 class DemoFolder(override val key: String, override val children: List<Item>): Folder {
-    override val title: String = key
-    override val description: String = title
+    override val title: String = "title: $key"
+    override val description: String = "description: $key"
     override fun setImageInView(imageView: ImageView) {
         // ignore
     }

@@ -73,8 +73,8 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
 
     override fun itemClicked(folder: Folder, item: Item) {
         val intent = Intent().apply {
-            putExtra(folderKey, folder.title)
-            putExtra(itemKey, item.title)
+            putExtra(folderKey, folder.key)
+            putExtra(itemKey, item.key)
         }
 
         setResult(Activity.RESULT_OK, intent)
