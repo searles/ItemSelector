@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,8 +29,8 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
     }
 
     private lateinit var adapter: FolderAdapter
-
     private lateinit var model: FolderModel
+    private lateinit var mergeMenu: MenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,14 +70,32 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        // TODO
+        // TODO: Restore open folders
         super.onSaveInstanceState(outState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.item_selector_main_menu, menu)
+        mergeMenu = menu!!.findItem(R.id.mergeMenuItem)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.mergeMenuItem -> {
+                return true
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun itemClicked(folder: Folder, item: Item) {
         val intent = Intent().apply {
             putExtra(folderKey, folder.key)
             putExtra(itemKey, item.key)
+            putExtra(mergeKey, mergeMenu.isChecked)
         }
 
         setResult(Activity.RESULT_OK, intent)
@@ -85,6 +106,7 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
         const val initializerClassNameKey = "initializerClassName"
         const val folderKey = "folder"
         const val itemKey = "item"
+        const val mergeKey = "mergeWithExisting"
     }
 
 }
