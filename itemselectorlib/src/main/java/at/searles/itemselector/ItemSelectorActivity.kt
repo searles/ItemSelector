@@ -60,20 +60,22 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
         model = FolderModel(initializer.folders)
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        //TODO: Save which folders are open.
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        // TODO: Restore open folders
-        super.onSaveInstanceState(outState)
-    }
-
     override fun itemClicked(folder: Folder, item: Item) {
         val intent = Intent().apply {
             putExtra(folderKey, folder.key)
             putExtra(itemKey, item.key)
+            putExtra(specialKey, false)
+        }
+
+        setResult(Activity.RESULT_OK, intent)
+        finish()
+    }
+
+    override fun itemLongClicked(folder: Folder, item: Item) {
+        val intent = Intent().apply {
+            putExtra(folderKey, folder.key)
+            putExtra(itemKey, item.key)
+            putExtra(specialKey, true)
         }
 
         setResult(Activity.RESULT_OK, intent)
@@ -84,6 +86,7 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
         const val initializerClassNameKey = "initializerClassName"
         const val folderKey = "folder"
         const val itemKey = "item"
+        const val specialKey = "special"
     }
 
 }

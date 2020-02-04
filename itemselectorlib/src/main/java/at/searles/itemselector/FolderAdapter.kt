@@ -52,7 +52,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
         }
     }
 
-    inner class EntryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class EntryViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
         private val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
         private val descriptionTextView: TextView = itemView.findViewById(R.id.descriptionTextView)
         private val iconImageView: ImageView = itemView.findViewById(R.id.iconImageView)
@@ -74,12 +74,25 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
             }
         }
 
+        override fun onLongClick(v: View?): Boolean {
+            val entry = model.getItemAt(adapterPosition)
+
+            if(entry is FolderWithId) {
+                return false
+            }
+
+            val item = entry as ItemWithId
+            listener?.itemLongClicked(item.parent, item)
+            return true
+        }
+
         fun bind(item: Entry) {
             // set ui
             nameTextView.text = item.title
             descriptionTextView.text = item.description
             item.setImageInView(iconImageView)
         }
+
     }
 
     object DiffCallback: DiffUtil.ItemCallback<Entry>() {
@@ -103,6 +116,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
 
     interface Listener {
         fun itemClicked(folder: Folder, item: Item)
+        fun itemLongClicked(folder: Folder, item: Item)
     }
 
     companion object {
