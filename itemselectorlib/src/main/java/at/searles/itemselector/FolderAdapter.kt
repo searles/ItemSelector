@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import at.searles.itemselector.model.*
 
+// TODO: Default
+
 class FolderAdapter(private val context: Context, private val model: FolderModel) :
     ListAdapter<Entry, FolderAdapter.EntryViewHolder>(DiffCallback) {
 
@@ -31,6 +33,7 @@ class FolderAdapter(private val context: Context, private val model: FolderModel
         val view = LayoutInflater.from(context).inflate(layoutId, viewGroup, false)
         val viewHolder = EntryViewHolder(view)
         view.setOnClickListener(viewHolder)
+        view.setOnLongClickListener(viewHolder)
         return viewHolder
     }
 
