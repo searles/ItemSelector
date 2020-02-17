@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,12 +26,17 @@ class ItemSelectorActivity : AppCompatActivity(), FolderAdapter.Listener {
         }
     }
 
+    private val toolbar: Toolbar by lazy {
+        findViewById<Toolbar>(R.id.toolbar)
+    }
+
     private lateinit var adapter: FolderAdapter
     private lateinit var model: FolderModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.demo_selector_activity_main)
+        setContentView(R.layout.item_selector_activity_main)
+        setSupportActionBar(toolbar)
 
         // set up data
         createModel()
