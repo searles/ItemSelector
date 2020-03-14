@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="96dp"
+    android:layout_height="wrap_content"
     android:drawableStart="@drawable/ic_arrow_down">
 
     <!-- TODO android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground"-->
